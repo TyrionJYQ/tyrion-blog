@@ -6,7 +6,7 @@ var db = new sqlite.Database(dbConfig.database, err => {
 });
 
 let obj = {};
-// 查询
+// 查询1
 obj.r = (sql, params) => {
   return new Promise((resolve, reject) => {
     db.all(sql, params, (err, data) => {
@@ -32,7 +32,7 @@ obj.w = (sql, params) => {
       }
 
       console.log("执行数据写入成功结束");
-      resolve({});
+      resolve({code: 'OK'});
     });
   });
 };

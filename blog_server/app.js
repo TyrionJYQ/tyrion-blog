@@ -2,6 +2,7 @@ const Koa = require("koa");
 const app = new Koa();
 const { port } = require("./config");
 const userRouter = require("./routers/userRouter");
+const checkUsername = require('./middlewares/checkUsername')
 
 app.use(async (ctx, next) => {
   await next();
@@ -20,7 +21,7 @@ app.use(async (ctx, next) => {
 
 // body-parser
 app.use(require("koa-bodyparser")());
-
+app.use(checkUsername);
 // 路由
 app.use(userRouter.routes());
 
