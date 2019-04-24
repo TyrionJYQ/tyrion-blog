@@ -36,9 +36,12 @@ module.exports = {
         return ctx.body = fail;
       } 
       let result = await addUser([username, password, email]);
+      console.log(result);
       if(result.code !== 'OK') {
         return ctx.body = unknown;
       }
+      success.msg = '注册成功';
+      ctx.body = success;
     } catch (e) {
       console.log(e)
     }
