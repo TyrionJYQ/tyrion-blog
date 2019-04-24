@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
-import MainHeader from '../../base/header'
+import MainHeader from '../../base/header/header';
+import MainFooter from '../../base/footer/footer'
 import { routes } from '../../routes/router'
 import { Route } from 'react-router-dom'
-import { pageHeader } from '../../config/pageConfig'
-const { Header, Content, Footer } = Layout;
+import { pageHeader, footHeight } from '../../config/pageConfig'
+
+const { Content } = Layout;
 
 class BlogLayout extends Component {
   constructor() {
@@ -14,12 +16,12 @@ class BlogLayout extends Component {
     }
   }
   initHeight() {
-    let minHeight, {lineHeight} = pageHeader;
-    minHeight = document.body.offsetHeight - parseFloat(lineHeight) - 61;
+    let minHeight, { lineHeight } = pageHeader;
+    minHeight = document.body.offsetHeight - parseFloat(lineHeight) - parseFloat(footHeight) - 2;
     this.setState({
       minHeight
     })
-    
+
   }
   componentDidMount() {
     this.initHeight();
@@ -28,15 +30,12 @@ class BlogLayout extends Component {
     }, false)
   }
 
-
   render() {
     return (
       <Layout className="layout">
-        <Header>
-          <MainHeader />
-        </Header>
+        <MainHeader />
         <Content style={{ padding: '0 50px' }}>
-          <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight}}>
+          <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight }}>
             {
               routes.map(({ path, key, component, ...props }) => (
                 <Route key={key}
@@ -49,9 +48,8 @@ class BlogLayout extends Component {
             }
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
+        <MainFooter />
+
       </Layout>
     )
   }

@@ -1,0 +1,14 @@
+.form-wrapper {
+  position: relative;
+  height: 100%;
+} 
+
+.width60 {
+  width: 80%;
+}
+.center-l40 {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+}

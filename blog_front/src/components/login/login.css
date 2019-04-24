@@ -1,0 +1,14 @@
+.form-wrapper {
+  position: relative;
+  height: 100%;
+} 
+.login-form {
+  width: 60%;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+
