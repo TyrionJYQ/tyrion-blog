@@ -1,5 +1,5 @@
 module.exports = {
-  port: "6666",
+  port: "9999",
   dbConfig: {
     database: "./database/blog.db"
   }
