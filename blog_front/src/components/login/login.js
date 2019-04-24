@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Http from '../../assets/js/api'
+import Http from '../../assets/js/api';
+import {userKeyNameInStorage} from '../../config/pageConfig'
 import './login.css'
 
 import {
@@ -21,6 +22,7 @@ class NormalLoginForm extends Component {
     Http.post(bizData)
     .then(data => {
       if(data.code !== '001') return message.error(data.msg);
+      localStorage.setItem(userKeyNameInStorage, userInfo.username)
       this.props.history.push('/main/home')
     }, err => {
       message.error('出错了，程序员小哥正在坐火箭赶来!')
