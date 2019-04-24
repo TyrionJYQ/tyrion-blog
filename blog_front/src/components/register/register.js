@@ -1,7 +1,8 @@
 import React from 'react';
 import {
-  Form, Input, Tooltip, Icon,  Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Tooltip, Icon,  Row, Col,  Button, message
 } from 'antd';
+import Http from '../../assets/js/api'
 import './register.css';
 
 
@@ -15,10 +16,23 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log(values);
+        this.doRegister(values);
       }
     });
   }
-
+  doRegister = userInfo => {
+    let bizData = {
+      data: userInfo,
+      url: '/tyrionblog/user/userRegister'
+    }
+    Http.post(bizData)
+    .then(data => {
+      if(data.code !== '001') return message.error(data.msg);
+      this.props.history.push('/login')
+    }, err => {
+      message.error('出错了，程序员小哥正在坐火箭赶来!')
+    });
+  }
   handleConfirmBlur = (e) => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
@@ -127,7 +141,7 @@ class RegistrationForm extends React.Component {
             </span>
           )}
         >
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: '请输入用户名!', whitespace: true }],
           })(
             <Input />
