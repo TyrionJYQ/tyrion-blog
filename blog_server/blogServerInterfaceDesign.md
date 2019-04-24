@@ -15,7 +15,7 @@
 
 - username: 所有接口对用户名进行校验，用户名为空给出提示信息:用户不存在(checkUserName.js中间件)
 
-  ​
+  
 
 ### 登录
 
@@ -55,11 +55,12 @@
 
 ##### 请求参数
 
-| 请求参数     | 数据类型   | 必填   | 描述   |
-| -------- | ------ | ---- | ---- |
-| username | string | 是    | 用户名  |
-| passward | string | 是    | 密码   |
-| capture  | string | 是    | 验证码  |
+| 请求参数 | 数据类型 | 必填 | 描述   |
+| -------- | -------- | ---- | ------ |
+| username | string   | 是   | 用户名 |
+| passward | string   | 是   | 密码   |
+| capture  | string   | 是   | 验证码 |
+| email    | string   | 是   | 邮箱   |
 
 ##### 响应参数
 

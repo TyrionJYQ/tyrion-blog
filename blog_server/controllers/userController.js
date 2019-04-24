@@ -4,8 +4,8 @@ module.exports = {
   doUserLogin: async (ctx, next) => {
     try {
       let { username, password } = ctx.request.body;
-      if (!username || !password) {
-        fail.msg = '用户名或密码不能为空';
+      if (!password) {
+        fail.msg = '密码不能为空';
         return ctx.body = fail;
       }
       let users = await getUserByUserName(username);
@@ -25,9 +25,9 @@ module.exports = {
 
   doUserRegister: async(ctx, next) => {
     try {
-      let { username, password } = ctx.request.body;
-      if (!username || !password) {
-        fail.msg = '用户名或密码不能为空';
+      let { username, password, email } = ctx.request.body;
+      if (!password || !email) {
+        fail.msg = '邮箱或密码不能为空';
         return ctx.body = fail;
       }
       let users = await getUserByUserName(username);
@@ -35,7 +35,7 @@ module.exports = {
         fail.msg = '用户名已存在';
         return ctx.body = fail;
       } 
-      let result = await addUser([username, password]);
+      let result = await addUser([username, password, email]);
       if(result.code !== 'OK') {
         return ctx.body = unknown;
       }
