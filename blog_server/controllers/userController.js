@@ -16,7 +16,9 @@ module.exports = {
       let user = users[0];
       if (user.password === password) {
         success.msg = '登录成功'
-        return ctx.body = success;
+        ctx.body = success;
+        console.log(user)
+        ctx.session.user = user 
       }
     } catch (e) {
       console.log(e)

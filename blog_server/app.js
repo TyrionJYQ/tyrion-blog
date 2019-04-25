@@ -1,8 +1,9 @@
 const Koa = require("koa");
 const app = new Koa();
-const { port } = require("./config");
+const { port, sessionConfig, sessionKey, routeList } = require("./config");
 const userRouter = require("./routers/userRouter");
-const checkUsername = require('./middlewares/checkUsername')
+const checkUsername = require('./middlewares/checkUsername');
+const checkLogin = require('./middlewares/checkLogin')
 
 app.use(async (ctx, next) => {
   await next();
@@ -21,7 +22,33 @@ app.use(async (ctx, next) => {
 
 // body-parser
 app.use(require("koa-bodyparser")());
+
+// handle session start
+const session = require('koa-session');
+app.keys = [sessionKey]
+let store = {
+  storage: {},
+  set: function (key, session) {
+    this.storage[key] = session;
+  },
+  get: function (key) {
+    return this.storage[key];
+  },
+  destroy: function (key) {
+    // 通过客户都的cookie钥匙删除session数据
+    delete this.storage[key];
+  }
+};
+sessionConfig.store = store;
+app.use(session(sessionConfig, app));
+// handle session end
+
+
+app.use(checkLogin(routeList));
+// 用户名验证
 app.use(checkUsername);
+
+
 // 路由
 app.use(userRouter.routes());
 
