@@ -5,23 +5,20 @@ const { getRandom} = require('../common/js/utils')
 module.exports = {
   doUserLogin: async (ctx, next) => {
     try {
+      console.log('进入登录')
       let { username, password } = ctx.request.body;
       if (!password) {
         fail.msg = '密码不能为空';
         return ctx.body = fail;
       }
       let users = await getUserByUserName(username);
-      if (users.length === 0) {
+      if (users.length === 0 || (users[0].password !== password)) {
         fail.msg = '用户名或密码错误，请重新输入';
         return ctx.body = fail;
       }
-      let user = users[0];
-      if (user.password === password) {
-        success.msg = '登录成功'
-        ctx.body = success;
-        console.log(user)
-        ctx.session.user = user 
-      }
+      success.msg = '登录成功'
+      ctx.session.user = user
+      ctx.body = success;
     } catch (e) {
       console.log(e)
     }
