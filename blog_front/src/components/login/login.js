@@ -59,7 +59,7 @@ class NormalLoginForm extends Component {
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
-          <Link to="/register">去注册s</Link>
+          <Link to="/register">去注册</Link>
         </Form.Item>
       </Form>
       </div>
