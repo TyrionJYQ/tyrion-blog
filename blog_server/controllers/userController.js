@@ -17,7 +17,7 @@ module.exports = {
         return ctx.body = fail;
       }
       success.msg = '登录成功'
-      ctx.session.user = users[0]
+      ctx.session.user = users[0];
       ctx.body = success;
     } catch (e) {
       console.log(e)

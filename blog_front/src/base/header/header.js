@@ -13,7 +13,8 @@ class MainHeader extends Component {
     super();
     let user = localStorage.getItem(userKeyNameInStorage)
     this.state = {
-      avatorName: (user ? user[0] : '')
+      avatorName: (user ? user[0] : ''),
+      theme: 'light'
     };
   }
 
@@ -34,24 +35,24 @@ class MainHeader extends Component {
         {avatorName}
       </Avatar>
     ) : (
-      <div>
-        <Button type="primary" className="mr20 ">
-          <Link to="/login">登录</Link>
-        </Button>
-        <Button type="primary">
-          <Link to="/register">注册</Link>
-        </Button>
-      </div>
-    );
+        <div>
+          <Button type="primary" className="mr20 ">
+            <Link to="/login">登录</Link>
+          </Button>
+          <Button type="primary">
+            <Link to="/register">注册</Link>
+          </Button>
+        </div>
+      );
     return (
       <Row>
-        <Header>
-          <Col span={6}>
+        <Header style={{backgroundColor: '#fff'}}>
+          <Col span={3}>
             <div className="logo" />
           </Col>
-          <Col span={12}>
-            <Menu
-              theme="dark"
+          <Col span={18} >
+          <Menu
+              theme={this.state.theme}
               mode="horizontal"
               defaultSelectedKeys={["1"]}
               style={{ lineHeight }}
@@ -59,6 +60,8 @@ class MainHeader extends Component {
               <Menu.Item key="1">
                 <Link to="/main/home">首页</Link>
               </Menu.Item>
+             
+             
               <Menu.Item key="2">
                 <Link to="/main/archive">分类</Link>
               </Menu.Item>
@@ -68,7 +71,7 @@ class MainHeader extends Component {
             </Menu>
           </Col>
 
-          <Col span={6} className="">
+          <Col span={3} style={{textAlign: 'right'}}>
             <Popconfirm title="退出登录?" onConfirm={() => this.logout()} onCancel={() => null} okText="Yes" cancelText="No">
               {user}
             </Popconfirm>,

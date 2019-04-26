@@ -4,7 +4,7 @@ import MainHeader from '../../base/header/header';
 import MainFooter from '../../base/footer/footer'
 import { routes } from '../../routes/router'
 import { Route } from 'react-router-dom'
-import { pageHeader, footHeight } from '../../config/pageConfig'
+import { pageHeader, footHeight, contentMarginTop } from '../../config/pageConfig'
 
 const { Content } = Layout;
 
@@ -17,7 +17,7 @@ class BlogLayout extends Component {
   }
   initHeight() {
     let minHeight, { lineHeight } = pageHeader;
-    minHeight = document.body.offsetHeight - parseFloat(lineHeight) - parseFloat(footHeight) - 2;
+    minHeight = document.body.offsetHeight - parseFloat(lineHeight) - parseFloat(footHeight) - 2 - contentMarginTop;
     this.setState({
       minHeight
     })
@@ -35,7 +35,7 @@ class BlogLayout extends Component {
       <Layout className="layout">
         <MainHeader history={this.props.history}/>
         <Content style={{ padding: '0 50px' }}>
-          <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight }}>
+          <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight, marginTop: contentMarginTop}}>
             {
               routes.map(({ path, key, component, ...props }) => (
                 <Route key={key}

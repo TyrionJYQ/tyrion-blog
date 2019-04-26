@@ -3,4 +3,5 @@ const pageHeader = {
 };
 const footHeight = "64px";
 const userKeyNameInStorage = 'tyrionblogUser'
-export { pageHeader, footHeight, userKeyNameInStorage };
+const contentMarginTop = 30;
+export { pageHeader, footHeight, userKeyNameInStorage, contentMarginTop };
