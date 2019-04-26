@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
-import { Layout, Button, Row, Col, Avatar } from "antd";
+import { Layout, Button, Row, Col, Avatar, Popconfirm } from "antd";
 import { pageHeader, userKeyNameInStorage } from "../../config/pageConfig";
+import Http from '../../assets/js/api'
 import "./header.css";
 
 const { lineHeight } = pageHeader;
@@ -15,9 +16,20 @@ class MainHeader extends Component {
       avatorName: (user ? user[0] : '')
     };
   }
+
+  logout() {
+    console.log(this.props)
+    let bizData = {
+      url: '/tyrionblog/user/userLogout'
+    };
+    Http.post(bizData).then(data => {
+      (data.code === '001') && this.props.history.push('/login')
+    })
+
+  }
   render() {
     let avatorName = this.state.avatorName;
-    let temp = avatorName ? (
+    let user = avatorName ? (
       <Avatar style={{ color: "#f56a00", backgroundColor: "#fde3cf" }}>
         {avatorName}
       </Avatar>
@@ -57,7 +69,9 @@ class MainHeader extends Component {
           </Col>
 
           <Col span={6} className="">
-            {temp}
+            <Popconfirm title="Are you sure delete this task?" onConfirm={() => this.logout()} onCancel={() => null} okText="Yes" cancelText="No">
+              {user}
+            </Popconfirm>,
           </Col>
         </Header>
       </Row>

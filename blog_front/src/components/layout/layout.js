@@ -33,7 +33,7 @@ class BlogLayout extends Component {
   render() {
     return (
       <Layout className="layout">
-        <MainHeader />
+        <MainHeader history={this.props.history}/>
         <Content style={{ padding: '0 50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight }}>
             {

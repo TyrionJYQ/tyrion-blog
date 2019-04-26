@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Http from '../../assets/js/api';
 import {userKeyNameInStorage} from '../../config/pageConfig'
 import './login.css'
@@ -58,7 +59,7 @@ class NormalLoginForm extends Component {
           <Button type="primary" htmlType="submit" className="login-form-button">
             登录
           </Button>
-          <a href="">去注册</a>
+          <Link to="/register">去注册s</Link>
         </Form.Item>
       </Form>
       </div>

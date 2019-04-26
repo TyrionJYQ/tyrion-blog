@@ -27,6 +27,12 @@ module.exports = {
     }
   },
 
+  doUserLogout: ctx => {
+    ctx.session = null;
+    success.msg = '成功退出登录';
+    ctx.body = success;
+  },
+
   doUserRegister: async(ctx, next) => {
     try {
       let { username, password, email, v_code } = ctx.request.body;
