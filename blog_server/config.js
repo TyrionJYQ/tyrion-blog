@@ -16,4 +16,7 @@ module.exports = {
   sessionKey: 'tyrion blog',
   routeList: [ // 需要进行登录校验的路由(正则或者字符串)
   ],
+  unCheckRouteList: [ // 不用校验username路由
+    '/tyrionblog/user/v_code'
+  ]
 };

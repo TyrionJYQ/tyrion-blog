@@ -1,5 +1,7 @@
 const { getUserByUserName, addUser } = require('../models/userModel');
-const { success, fail, unknown } = require('./apiConfig')
+const { success, fail, unknown } = require('./apiConfig');
+const { getRandom} = require('../common/js/utils')
+
 module.exports = {
   doUserLogin: async (ctx, next) => {
     try {
@@ -27,9 +29,17 @@ module.exports = {
 
   doUserRegister: async(ctx, next) => {
     try {
-      let { username, password, email } = ctx.request.body;
+      let { username, password, email, v_code } = ctx.request.body;
+      if(!v_code) {
+        fail.msg = '验证码不能为空'
+        return ctx.body = fail;
+      }
       if (!password || !email) {
         fail.msg = '邮箱或密码不能为空';
+        return ctx.body = fail;
+      }
+      if(ctx.session.v_code !== v_code) {
+        fail.msg = '验证码不正确';
         return ctx.body = fail;
       }
       let users = await getUserByUserName(username);
@@ -38,14 +48,21 @@ module.exports = {
         return ctx.body = fail;
       } 
       let result = await addUser([username, password, email]);
-      console.log(result);
       if(result.code !== 'OK') {
         return ctx.body = unknown;
       }
       success.msg = '注册成功';
       ctx.body = success;
     } catch (e) {
-      console.log(e)
+      ctx.body = unknown;
     }
+  },
+
+  getCaptcha: async(ctx, next) => {
+    let rand = getRandom(5)
+    ctx.session.v_code = rand;
+    ctx.type = "image"
+    success.v_code = rand;
+    ctx.body = success;
   }
 }

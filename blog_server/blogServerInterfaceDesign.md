@@ -15,11 +15,12 @@
 
 - username: 所有接口对用户名进行校验，用户名为空给出提示信息:用户不存在(checkUserName.js中间件)
 
-  
 
 ### 登录
 
 ##### 请求路径 `tyrionblog/user/userLogin`
+
+##### 请求方法: post
 
 ##### 请求参数
 
@@ -53,14 +54,16 @@
 
 ##### 请求路径 `tyrionblog/user/userRegister`
 
+##### 请求方法: post
+
 ##### 请求参数
 
-| 请求参数 | 数据类型 | 必填 | 描述   |
-| -------- | -------- | ---- | ------ |
-| username | string   | 是   | 用户名 |
-| passward | string   | 是   | 密码   |
-| capture  | string   | 是   | 验证码 |
-| email    | string   | 是   | 邮箱   |
+| 请求参数     | 数据类型   | 必填   | 描述   |
+| -------- | ------ | ---- | ---- |
+| username | string | 是    | 用户名  |
+| passward | string | 是    | 密码   |
+| capture  | string | 是    | 验证码  |
+| email    | string | 是    | 邮箱   |
 
 ##### 响应参数
 
@@ -75,3 +78,26 @@
 - 将注册用户存储到BLOG_USER表
   - 存储成功：code: 001,msg: '注册成功';
   - 存储失败： code: 003,msg:共通msg
+
+
+
+### 验证码
+
+##### 请求路径 `tyrionblog/user/v_code`
+
+##### 请求方法: get
+
+##### 请求参数
+
+| 请求参数 | 数据类型 | 必填   | 描述   |
+| ---- | ---- | ---- | ---- |
+| /    | /    | /    | /    |
+
+##### 响应参数
+
+| 响应参数   | 数据类型   | 必填   | 描述        |
+| ------ | ------ | ---- | --------- |
+| code   | string | 是    | 响应编码      |
+| msg    | string | 是    | 响应信息      |
+| v_code | string | 是    | 5位随机数字字符串 |
+

@@ -10,7 +10,20 @@ class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
+    v_code: ''
   };
+
+  componentDidMount() {
+    this.getV_code()
+  }
+
+  getV_code() {
+    let bizData = {
+      url: 'tyrionblog/user/v_code'
+    }
+    Http.get(bizData).then(data => this.setState({v_code: data.v_code}), err => console.log(err))
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
@@ -153,14 +166,14 @@ class RegistrationForm extends React.Component {
         >
           <Row gutter={8}>
             <Col span={12}>
-              {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: 'Please input the captcha you got!' }],
+              {getFieldDecorator('v_code', {
+                rules: [{ required: true, message: '请输入右侧数字验证码' }],
               })(
                 <Input />
               )}
             </Col>
             <Col span={12}>
-              <Button>Get captcha</Button>
+              <Button onClick={() => this.getV_code() }>{this.state.v_code}</Button>
             </Col>
           </Row>
         </Form.Item>
@@ -170,7 +183,7 @@ class RegistrationForm extends React.Component {
       </Form>
       </div>
     );
-  }
+  }        
 }
 
 const Register = Form.create({ name: 'register' })(RegistrationForm);
