@@ -69,7 +69,7 @@ class MainHeader extends Component {
           </Col>
 
           <Col span={6} className="">
-            <Popconfirm title="Are you sure delete this task?" onConfirm={() => this.logout()} onCancel={() => null} okText="Yes" cancelText="No">
+            <Popconfirm title="退出登录?" onConfirm={() => this.logout()} onCancel={() => null} okText="Yes" cancelText="No">
               {user}
             </Popconfirm>,
           </Col>
