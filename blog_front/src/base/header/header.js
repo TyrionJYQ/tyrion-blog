@@ -72,6 +72,9 @@ class MainHeader extends Component {
               <Menu.Item key="3">
                 <Link to="/main/about">关于</Link>
               </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/main/article">文章测试</Link>
+              </Menu.Item>
             </Menu>
           </Col>
 
