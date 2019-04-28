@@ -32,6 +32,7 @@ module.exports = {
 
   doUserRegister: async(ctx, next) => {
     try {
+      console.log('进入新增文章')
       let { username, password, email, v_code } = ctx.request.body;
       if(!v_code) {
         fail.msg = '验证码不能为空'

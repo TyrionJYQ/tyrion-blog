@@ -1,7 +1,7 @@
 const { fail } = require('../controllers/apiConfig');
 const { unCheckRouteList } = require('../config')
 module.exports = async (ctx, next) => {
-  console.log('进入了')
+  console.log('进入了111')
   console.log(ctx.url);
   let isPass = unCheckRouteList.find(route => route === ctx.url);
   if (!isPass) {

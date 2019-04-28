@@ -5,7 +5,6 @@ const mock_content = "Hello.\n\n * This is markdown.\n * It is fun\n * Love it o
 
 
 export default class Article extends Component {
-
   render() {
     const wrapper = document.createElement('div')
     const md = new MarkdownIt({

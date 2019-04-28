@@ -5,7 +5,7 @@ module.exports = {
   },
   fail: {
     code: '002',
-    msg: '请求失败'
+    msg: ''
   },
   unknown: {
     code: '003',
