@@ -176,29 +176,25 @@
 
 ##### 请求参数
 
-| 请求参数          | 数据类型   | 必填   | 描述         |
-| ------------- | ------ | ---- | ---------- |
-| endTime       | number | 否    | 文章所属区间结束时间 |
-| tags          | string | 否    | 文章所属标签     |
-| archive       | string | 否    | 文章归类       |
-| startTime     | string | 否    | 文章所属区间起始时间 |
-| countsPerPage | number | 否    | 每页显示文章数量   |
-| currentPage   | number | 否    | 第几页        |
+| 请求参数      | 数据类型 | 必填 | 描述             |
+| ------------- | -------- | ---- | ---------------- |
+| countsPerPage | number   | 否   | 每页显示文章数量 |
+| currentPage   | number   | 否   | 第几页           |
 
 ##### 响应参数
 
-| 响应参数       | 数据类型   | 必填   | 描述    |
-| ---------- | ------ | ---- | ----- |
-| code       | string | 是    | 响应编码  |
-| msg        | string | 是    | 响应信息  |
-| articles   | array  | 是    | 请求的文章 |
-| pageCounts | number | 是    | 总页数   |
+| 响应参数 | 数据类型 | 必填 | 描述       |
+| -------- | -------- | ---- | ---------- |
+| code     | string   | 是   | 响应编码   |
+| msg      | string   | 是   | 响应信息   |
+| articles | array    | 是   | 请求的文章 |
+| pages    | number   | 是   | 总页数     |
+| counts   | number   | 是   | 文章总数   |
 
 ##### 业务说明
 
 - 获取博客文章
 - 根据请求参数对字段进行筛选
-- ​
 
 
 

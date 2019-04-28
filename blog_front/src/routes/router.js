@@ -19,12 +19,6 @@ export const routes = [
     path: "/main/about",
     component: About
     
-  },
-  {
-    key: '文章测试',
-    path: "/main/article",
-    component: Article
-
   }
 ];
 

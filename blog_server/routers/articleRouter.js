@@ -1,8 +1,8 @@
-const Router = require('koa-router');
+const Router = require("koa-router");
 let router = new Router();
-const { addArticle, getArticles} = require('../controllers/articleController');
+const { addArticle, getAllArticles } = require("../controllers/articleController");
 
 router
-.post('/tyrionblog/articles/newArticle', addArticle)
-.get('/tyrionblog/articles', getArticles)
+  .post("/tyrionblog/articles/newArticle", addArticle)
+  .get("/tyrionblog/articles", getAllArticles);
 module.exports = router;

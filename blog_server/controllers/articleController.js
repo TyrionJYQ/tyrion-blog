@@ -1,5 +1,5 @@
 const  {success, fail, unknown} = require('./apiConfig');
-const { addArtcile} = require('../models/articleModel');
+const { addArtcile, getArticeSum, getCurrentPageArticles} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
 module.exports = {
   addArticle: async (ctx, next) => {
@@ -30,9 +30,15 @@ module.exports = {
     ctx.body = success;
   },
 
-  getArticles: async (ctx, next) => {
-    let {archive, tags, startTime, endTime, countsPerPage, curentPage } = ctx.request.body;
-    
-
+  getAllArticles: async (ctx, next) => {
+    let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
+    console.log(countsPerPage, currentPage);
+    let ids = await getArticeSum();
+    let counts = ids.length;
+    let offsets = (currentPage-1) * countsPerPage
+    let articles = await getCurrentPageArticles({countsPerPage, offsets})
+    let pages = Math.ceil(counts / countsPerPage)
+    successObj = Object.assign(success, {msg: '文章获取成功', counts, pages, articles})
+    ctx.body = successObj;
   }
 }
