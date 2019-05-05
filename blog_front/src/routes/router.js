@@ -1,7 +1,7 @@
 import About from '../components/about/about';
 import Home from '../components/home/home';
 import Archive from '../components/archive/archive';
-import Article from '../base/article/article'
+
 export const routes = [
   {
     key: '首页',

@@ -31,8 +31,7 @@ module.exports = {
   },
 
   getAllArticles: async (ctx, next) => {
-    let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
-    console.log(countsPerPage, currentPage);
+	let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
     let ids = await getArticeSum();
     let counts = ids.length;
     let offsets = (currentPage-1) * countsPerPage

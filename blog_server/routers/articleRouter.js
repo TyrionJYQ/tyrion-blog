@@ -4,5 +4,5 @@ const { addArticle, getAllArticles } = require("../controllers/articleController
 
 router
   .post("/tyrionblog/articles/newArticle", addArticle)
-  .get("/tyrionblog/articles", getAllArticles);
+  .post("/tyrionblog/articles", getAllArticles);
 module.exports = router;

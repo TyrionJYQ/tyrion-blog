@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Http from '../../assets/js/api';
+import ArticleList from '../articleList/articleList'
+
 class Home extends Component {
     constructor() {
       super();
@@ -9,15 +10,12 @@ class Home extends Component {
     }
 
     componentDidMount() {
-      const bizData = {
-        url: '/tyrionblog/articles'
-      }
-      Http.get(bizData).then(data => console.log(data))
+     
     }
 
     render() {
         return (
-          <p>我是首页</p>
+          <ArticleList/>
         )
     }
 }

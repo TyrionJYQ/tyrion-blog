@@ -18,6 +18,7 @@ module.exports = {
   ],
   unCheckRouteList: [ // 不用校验username路由
     '/tyrionblog/user/v_code',
-    '/tyrionblog/user/userLogout'
+    '/tyrionblog/user/userLogout',
+	'/tyrionblog/articles'
   ]
 };
