@@ -4,4 +4,8 @@ const pageHeader = {
 const footHeight = "64px";
 const userKeyNameInStorage = 'tyrionblogUser'
 const contentMarginTop = 30;
-export { pageHeader, footHeight, userKeyNameInStorage, contentMarginTop };
+const paginationConfig = {
+  countsPerPage: 4,
+  currentPage: 1
+}
+export { pageHeader, footHeight, userKeyNameInStorage, contentMarginTop, paginationConfig };

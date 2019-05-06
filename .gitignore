@@ -1,3 +1,4 @@
 /node_modules
 /blog_server/node_modules
 /blog_front/node_modules
+/blog_server/database/blog.db
