@@ -31,11 +31,12 @@ class BlogLayout extends Component {
   }
 
   render() {
+    const {minHeight} = this.state
     return (
       <Layout className="layout">
         <MainHeader history={this.props.history}/>
         <Content style={{ padding: '0 50px' }}>
-          <div style={{ background: '#fff', padding: 24, minHeight: this.state.minHeight, marginTop: contentMarginTop}}>
+          <div style={{ background: '#fff', padding: 24, minHeight, marginTop: contentMarginTop, height: minHeight, overflow: 'auto'}}>
             {
               routes.map(({ path, key, component, ...props }) => (
                 <Route key={key}

@@ -1,6 +1,7 @@
 import About from '../components/about/about';
 import Home from '../components/home/home';
 import Archive from '../components/archive/archive';
+import WritePage from '../components/writepage/writepage';
 
 export const routes = [
   {
@@ -18,7 +19,11 @@ export const routes = [
     key: '关于',
     path: "/main/about",
     component: About
-    
+  },
+  {
+    key: 'markdown测试',
+    path: "/main/write",
+    component: WritePage
   }
 ];
 

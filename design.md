@@ -1,8 +1,10 @@
-<center>tyrion-blog 设计文档</center>
+tyrion-blog 设计文档
 
 ### 功能描述
 
-tyrion-blog 个人技术博客，需要实现以下功能
+tyrion-blog 个人技术博客，需要实现以下功能...
+
+### read more
 
 - 注册及登录
   - 注册

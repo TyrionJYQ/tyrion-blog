@@ -1,6 +1,11 @@
 const  {success, fail, unknown} = require('./apiConfig');
 const { addArtcile, getArticeSum, getCurrentPageArticles} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
+const md = require('markdown-it')(
+{html: true,
+  linkify: true,
+	typographer: true}
+);
 module.exports = {
   addArticle: async (ctx, next) => {
    let {title, archive, tags, time, content} = ctx.request.body;
@@ -36,6 +41,8 @@ module.exports = {
     let counts = ids.length;
     let offsets = (currentPage-1) * countsPerPage
     let articles = await getCurrentPageArticles({countsPerPage, offsets})
+    articles.forEach(article => article.content = md.render(article.content));
+    console.log(articles);
     let pages = Math.ceil(counts / countsPerPage)
     successObj = Object.assign(success, {msg: '文章获取成功', counts, pages, articles})
     ctx.body = successObj;

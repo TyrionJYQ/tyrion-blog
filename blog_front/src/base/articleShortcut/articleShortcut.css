@@ -1,0 +1,19 @@
+.article-short {
+    margin-bottom: 50px;
+    padding: 10px 10px;
+    border-radius: 4px;
+}
+
+.article-short .ant-btn {
+  border-color: #000;
+  color: #000;
+  font-weight: 600;
+}
+.article-short .ant-btn:hover,
+.article-short .ant-btn:active,
+.article-short .ant-btn:focus {
+  background: black; 
+  color: white;
+  border-color: #000;
+}
+
