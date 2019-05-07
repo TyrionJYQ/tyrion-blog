@@ -2,6 +2,7 @@ import About from '../components/about/about';
 import Home from '../components/home/home';
 import Archive from '../components/archive/archive';
 import WritePage from '../components/writepage/writepage';
+import ArticleDetail from '../components/articleDetail/articleDetail';
 
 export const routes = [
   {
@@ -24,6 +25,11 @@ export const routes = [
     key: 'markdown测试',
     path: "/main/write",
     component: WritePage
+  },
+  {
+    key: '文章详情',
+    path: "/main/article/:id",
+    component: ArticleDetail
   }
 ];
 

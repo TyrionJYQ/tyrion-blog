@@ -61,7 +61,7 @@ export default class ArticleList extends Component {
     const antIcon = <Icon type="loading" style={{ fontSize: 24, color: '#000'}} spin />;
     let articles = [],{counts} = this.state;
     this.state.articles.forEach(article => {
-      articles.push(<ArticleShortCut article={article} key={article.id}/>)
+      articles.push(<ArticleShortCut article={article}  key={article.id}/>)
     });
     return (
       <div className="article-list">

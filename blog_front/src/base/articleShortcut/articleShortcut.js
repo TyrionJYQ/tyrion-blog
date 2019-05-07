@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Icon, Divider} from 'antd';
 import {getFormatDate} from '../../assets/js/utils'
 import './articleShortcut.css'
-export default class ArticleShortCut extends Component {
+class ArticleShortCut extends Component {
   render() {
-    let { content, title, time} = this.props.article;
+    let { content, title, time, id} = this.props.article;
     time = getFormatDate({date:time, pattern:'yyyy-MM-dd'});
     let index = content.indexOf('readmore');
     // 文章截取标志
@@ -21,14 +22,16 @@ export default class ArticleShortCut extends Component {
           <div dangerouslySetInnerHTML={{ __html: content }} style={{marginTop: 40}}></div>
         </div>
         <div className="text-center mb60 mt40">
-          <Button className="hover-btn">Read More <Icon type="double-right" /></Button>
+          <Link to={`/main/article/${id}`}>  
+            <Button className="hover-btn">Read More <Icon type="double-right" /></Button>
+          </Link>
         </div>
         <Divider style={ {width: 60, minWidth: 40, textAlign: 'center'}} className="h-center"></Divider>
       </div>
     );
   }
 }
-
+export default withRouter(ArticleShortCut)
 ArticleShortCut.propTypes = {
   article: PropTypes.object.isRequired
 };
