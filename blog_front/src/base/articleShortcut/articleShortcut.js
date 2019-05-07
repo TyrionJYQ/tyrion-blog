@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Button, Icon, Divider} from 'antd';
-import {getFormatDate} from '../../assets/js/utils'
+import {getFormatDate} from '@assets/js/utils'
 import './articleShortcut.css'
 class ArticleShortCut extends Component {
   render() {

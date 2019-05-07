@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, BackTop} from 'antd';
-import MainHeader from '../../base/header/header';
-import MainFooter from '../../base/footer/footer'
+import MainHeader from '@base/header/header';
+import MainFooter from '@base/footer/footer'
 import { routes } from '../../routes/router'
 import { Route } from 'react-router-dom'
 import { pageHeader, footHeight, contentMarginTop } from '../../config/pageConfig'

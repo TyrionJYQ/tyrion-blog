@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Layout } from 'antd';
-import {footHeight} from '../../config/pageConfig';
+import {footHeight} from '@config/pageConfig';
 const { Footer } = Layout;
  class MainFooter extends Component {
   render() {

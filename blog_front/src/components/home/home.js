@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArticleList from '../articleList/articleList'
+import ArticleList from '@components/articleList/articleList'
 
 class Home extends Component {
     constructor() {

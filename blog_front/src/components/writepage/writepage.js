@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 import {Input, Button} from 'antd';
 
-import Http from '../../assets/js/api';
+import Http from '@assets/js/http';
 const { TextArea } = Input;
 class WritePage extends Component {
   constructor(props) {

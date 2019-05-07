@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "antd";
 import { Layout, Button, Row, Col, Avatar, Popconfirm } from "antd";
-import Logo from '../logo/logo'
-import { pageHeader, userKeyNameInStorage } from "../../config/pageConfig";
-import Http from '../../assets/js/api'
+import { pageHeader, userKeyNameInStorage } from "@config/pageConfig";
+import { doLogout } from '@api/user';
+import Logo from '../logo/logo';
 import "./header.css";
 
 const { lineHeight } = pageHeader;
@@ -23,15 +23,11 @@ class MainHeader extends Component {
     this.setState({visible: isShow})
   }
   logout() {
-    console.log(this.props)
-    let bizData = {
-      url: '/tyrionblog/user/userLogout'
-    };
-    Http.post(bizData).then(data => {
+    doLogout().then(data => {
       (data.code === '001') && this.props.history.push('/login')
     })
-
   }
+
   render() {
     let avatorName = this.state.avatorName;
     let user = avatorName ? (
