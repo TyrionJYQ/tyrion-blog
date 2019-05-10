@@ -11,5 +11,5 @@ module.exports = async (ctx, next) => {
       return ctx.body = fail;
     }
   }
-  await next()
+  await next();
 }

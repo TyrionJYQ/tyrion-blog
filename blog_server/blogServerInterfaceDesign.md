@@ -199,3 +199,33 @@
 
 
 
+### 获取文章详情
+
+
+
+##### 请求路径 `tyrionblog/articles`/articleDetail
+
+##### 请求方法: post
+
+##### 请求参数
+
+| 请求参数 | 数据类型 | 必填 | 描述   |
+| -------- | -------- | ---- | ------ |
+| id       | number   | 是   | 文章id |
+
+##### 响应参数
+
+| 响应参数      | 数据类型 | 必填 | 描述     |
+| ------------- | -------- | ---- | -------- |
+| code          | string   | 是   | 响应编码 |
+| msg           | string   | 是   | 响应信息 |
+| articleDetail | object   | 否   | 文章详情 |
+
+##### 业务说明
+
+- 根据id从数据库查找文章
+  - 文章不存在, code = '002', msg = '文章不存在'，
+  - 文章存在， code = '001', msg = '文章存在'， articleDetail = {id,tags,title, archive, time, content}
+
+
+

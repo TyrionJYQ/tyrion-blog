@@ -47,7 +47,7 @@ app.use(session(sessionConfig, app));
 
 app.use(checkLogin(routeList));
 // 用户名验证
-app.use(checkUsername);
+// app.use(checkUsername);
 
 
 // 路由

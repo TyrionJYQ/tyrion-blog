@@ -1,5 +1,5 @@
 const  {success, fail, unknown} = require('./apiConfig');
-const { addArtcile, getArticeSum, getCurrentPageArticles} = require('../models/articleModel');
+const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
 const md = require('markdown-it')(
 {html: true,
@@ -36,7 +36,7 @@ module.exports = {
   },
 
   getAllArticles: async (ctx, next) => {
-	let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
+	  let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
     let ids = await getArticeSum();
     let counts = ids.length;
     let offsets = (currentPage-1) * countsPerPage
@@ -44,7 +44,24 @@ module.exports = {
     articles.forEach(article => article.content = md.render(article.content));
     console.log(articles);
     let pages = Math.ceil(counts / countsPerPage)
-    successObj = Object.assign(success, {msg: '文章获取成功', counts, pages, articles})
+    successObj = Object.assign({},success, {msg: '文章获取成功', counts, pages, articles})
     ctx.body = successObj;
+  },
+
+  getArticleDetail: async (ctx, next) => {
+    console.log('===================>')
+    let { id } = ctx.request.body;
+    fail.msg = '文章不存在';
+    if(!id || id.length !== 10) return ctx.body = fail;
+    let results = await getArticleById(id);
+    if(results.erroMsg) {
+      unknown.msg = results.erroMsg;
+      return ctx.body = unknown;
+    }
+    if(results.length === 0) return ctx.body = fail;
+    console.log(success);
+    results[0].content = md.render(results[0].content)
+    success.articleDetail = results[0];
+    ctx.body = success; 
   }
 }
