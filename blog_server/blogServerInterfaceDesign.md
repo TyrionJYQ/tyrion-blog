@@ -15,7 +15,7 @@
 
 - username: 所有接口对用户名进行校验，用户名为空给出提示信息:用户不存在(checkUserName.js中间件)
 
-### readmore
+<!--readmore-->
 
 ### 登录
 
@@ -228,4 +228,32 @@
   - 文章存在， code = '001', msg = '文章存在'， articleDetail = {id,tags,title, archive, time, content}
 
 
+
+### 获取文章归档
+
+
+
+##### 请求路径 `tyrionblog/articles`/archives
+
+##### 请求方法: get
+
+##### 请求参数
+
+| 请求参数 | 数据类型 | 必填 | 描述 |
+| -------- | -------- | ---- | ---- |
+| /        | /        | /    | /    |
+
+##### 响应参数
+
+| 响应参数 | 数据类型 | 必填 | 描述     |
+| -------- | -------- | ---- | -------- |
+| code     | string   | 是   | 响应编码 |
+| msg      | string   | 是   | 响应信息 |
+| archives | array    | 是   | 所有归档 |
+
+##### 业务说明
+
+- 从数据库文章表中获取所有archive,过滤相同archive并返回，如果为空，则返回数组。
+  - 文章不存在, code = '002', msg = '文章不存在'，
+  - 文章存在， code = '001', msg = '文章存在'， articleDetail = {id,tags,title, archive, time, content}
 

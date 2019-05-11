@@ -1,5 +1,5 @@
 const  {success, fail, unknown} = require('./apiConfig');
-const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById} = require('../models/articleModel');
+const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById, getArticleArchives} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
 const md = require('markdown-it')(
 {html: true,
@@ -63,5 +63,21 @@ module.exports = {
     results[0].content = md.render(results[0].content)
     success.articleDetail = results[0];
     ctx.body = success; 
+  },
+
+  getArchives: async ctx => {
+    let results = await getArticleArchives();
+    if(results.erroMsg) {
+      unknown.msg = results.erroMsg;
+      return ctx.body = unknown;
+    }
+    success.msg = '获取文章归档成功';
+    if(results.length === 0) {
+      success.archives = []
+    } else {
+      success.archives = results.map(result => result.archive)
+    }
+    ctx.body = success;
+    
   }
 }

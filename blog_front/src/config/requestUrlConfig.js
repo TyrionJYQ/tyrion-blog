@@ -11,7 +11,8 @@ const userModule = {
 const articleUrlBase = 'tyrionblog/articles'
 const articleModule = {
     getArticlesUrl: `${articleUrlBase}`,
-    getArticleDetailUrl: `${articleUrlBase}/articleDetail`
+    getArticleDetailUrl: `${articleUrlBase}/articleDetail`,
+    getArticlesArchivesUrl: `${articleUrlBase}/archives`
 }
 export  {
   userModule,

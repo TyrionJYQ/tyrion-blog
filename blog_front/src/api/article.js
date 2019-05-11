@@ -1,7 +1,7 @@
 import Http from "@assets/js/http";
 import {articleModule} from '@config/requestUrlConfig';
 
-const {getArticlesUrl, getArticleDetailUrl} = articleModule;
+const {getArticlesUrl, getArticleDetailUrl,getArticlesArchivesUrl} = articleModule;
 
 
 const getArticles = paginationConfig => {
@@ -24,7 +24,10 @@ const getArticleDetail = id => {
   return Http.post(bizData);
 }
 
+const getArticlesArchives = () => Http.get({url: getArticlesArchivesUrl})
+
 export {
     getArticles,
-    getArticleDetail
+    getArticleDetail,
+    getArticlesArchives
 }

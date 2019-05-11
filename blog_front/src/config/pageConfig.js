@@ -8,4 +8,8 @@ const paginationConfig = {
   countsPerPage: 4,
   currentPage: 1
 }
-export { pageHeader, footHeight, userKeyNameInStorage, contentMarginTop, paginationConfig };
+
+const articleConfig = {
+  articleArchiveTagColor: 'lime'
+}
+export { pageHeader, footHeight, userKeyNameInStorage, contentMarginTop, paginationConfig, articleConfig };
