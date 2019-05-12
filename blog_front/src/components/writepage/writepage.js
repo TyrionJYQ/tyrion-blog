@@ -23,8 +23,8 @@ class WritePage extends Component {
   setTitle(e) {
     this.title = e.target.value
   }
-  setArchive(e) {
-    this.archive = e.target.value
+  setCategory(e) {
+    this.category = e.target.value
   }
   setTags(e) {
     this.tags = e.target.value
@@ -52,7 +52,7 @@ class WritePage extends Component {
       <div>
         <TextArea rows={4} onChange={ e => this.change(e)}/>
         <Input placeholder="请输入文章标题" onChange = { e => this.setTitle(e) } addonAfter="文章标题"/>
-        <Input placeholder="请输入文章类别" onChange = { e => this.setArchive(e)} addonAfter="文章类别"/>
+        <Input placeholder="请输入文章类别" onChange = { e => this.setCategory(e)} addonAfter="文章类别"/>
         <Input placeholder="请输入文章标签" onChange = { e => this.setTags(e)} addonAfter="文章标签"/>
         <p><Button onClick={() => this.addArticle()}>发表文章</Button></p>
       </div>

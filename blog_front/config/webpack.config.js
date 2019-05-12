@@ -270,7 +270,8 @@ module.exports = function(webpackEnv) {
         '@base': path.resolve('src/base'),
         '@config': path.resolve('src/config'),
         '@assets': path.resolve('src/assets'),
-        '@api': path.resolve('src/api')
+        '@api': path.resolve('src/api'),
+        '@assets': path.resolve('src/assets')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

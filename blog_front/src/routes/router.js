@@ -11,7 +11,7 @@ export const routes = [
     component: Home 
   },
   {
-    key: '分类',
+    key: '归档',
     path: '/main/archive',
     component: Archive
   },
