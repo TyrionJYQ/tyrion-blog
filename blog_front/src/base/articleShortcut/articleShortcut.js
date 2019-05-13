@@ -9,8 +9,7 @@ import "./articleShortcut.css";
 const { articleArchiveTagColor } = articleConfig;
 class ArticleShortCut extends Component {
   render() {
-    console.log("===================>", this.props.article);
-    let { content, title, time, id, archive } = this.props.article;
+    let { content, title, time, id, category } = this.props.article;
     time = getFormatDate({ date: time, pattern: "yyyy-MM-dd" });
     let index = content.indexOf("<!--readmore-->");
     // 文章截取标志
@@ -23,7 +22,7 @@ class ArticleShortCut extends Component {
             <Icon type="calendar" style={{ marginRight: 10 }} />
             <span style={{ color: "#999" }}>发表于{time}</span>
             <Divider type="vertical" />
-            <Tag color={articleArchiveTagColor}>{archive}</Tag>
+            <Tag color={articleArchiveTagColor}>{category}</Tag>
           </div>
           <div
             dangerouslySetInnerHTML={{ __html: content }}

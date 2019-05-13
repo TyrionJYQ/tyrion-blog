@@ -1,0 +1,34 @@
+#archive .ant-timeline-item-head-blue {
+    color: #bfbfbf;
+    border-color: #bfbfbf;
+}
+
+#archive .ant-timeline-item-head {
+    background-color: #fafafa;
+}
+
+#archive a {
+    color: #666;
+}
+
+#archive .year {
+    font-size: 20px;
+    color: #171515;
+    font-weight: 500;
+}
+#archive .ant-timeline-item {
+    padding: 0 0 30px;
+}
+#archive .article:hover .ant-timeline-item-head {
+    background-color: #0e0e0e;
+
+}
+
+#archive .article:hover .ant-timeline-item-head-blue  {
+    color: #0e0e0e;
+    border-color: #0e0e0e;
+}
+
+#archive .article:hover  .ant-timeline-item-content {
+    font-size: 18px;
+}
