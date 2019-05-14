@@ -12,7 +12,7 @@ export default class ArticleList extends Component {
     this.state = {
       loading: false,
       articles: [],
-      counts: 50,
+      counts: 0,
       countsPerPage,
       currentPage
     };
