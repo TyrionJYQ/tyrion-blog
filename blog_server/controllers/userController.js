@@ -1,9 +1,10 @@
 const { getUserByUserName, addUser } = require('../models/userModel');
-const { success, fail, unknown } = require('./apiConfig');
-const { getRandom} = require('../common/js/utils')
+// const  {baseSuccess, baseFail, baseUnknown} = require('./apiConfig');
+const { getRandom, getResponseObj} = require('../common/js/utils')
 
 module.exports = {
-  doUserLogin: async (ctx, next) => {
+  doUserLogin: async ctx => {
+    const {success, fail} = getResponseObj()
     try {
       console.log('进入登录')
       let { username, password } = ctx.request.body;
@@ -25,12 +26,14 @@ module.exports = {
   },
 
   doUserLogout: ctx => {
+    const {success} = getResponseObj()
     ctx.session = null;
     success.msg = '成功退出登录';
     ctx.body = success;
   },
 
-  doUserRegister: async(ctx, next) => {
+  doUserRegister: async ctx => {
+    const {success, fail, unknown} = getResponseObj()
     try {
       console.log('进入新增文章')
       let { username, password, email, v_code } = ctx.request.body;
@@ -62,7 +65,8 @@ module.exports = {
     }
   },
 
-  getCaptcha: async(ctx, next) => {
+  getCaptcha: async ctx => {
+    const {success} = getResponseObj()
     let rand = getRandom(5)
     ctx.session.v_code = rand;
     ctx.type = "image"

@@ -285,7 +285,9 @@
 
 ##### 业务说明
 
-- 从文章表中获取ID = id, TITLE  = title, TIME = time 按time降序排列，返回articles
+从文章表中获取所有文章articles = [...,{id, time, title},...]
 
-  
+前台假分页处理
+
+
 

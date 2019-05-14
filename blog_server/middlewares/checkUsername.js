@@ -1,8 +1,7 @@
-const { fail } = require('../controllers/apiConfig');
+const { getResponseObj } = require('../common/js/utils');
 const { unCheckRouteList } = require('../config')
 module.exports = async (ctx, next) => {
-  console.log('进入了111')
-  console.log(ctx.url);
+  const {fail} = getResponseObj();
   let isPass = unCheckRouteList.find(route => route === ctx.url);
   if (!isPass) {
     let { username } = ctx.request.body;

@@ -1,13 +1,22 @@
-const  {success, fail, unknown} = require('./apiConfig');
+// const  {baseSuccess, baseFail, baseUnknown} = require('./apiConfig');
 const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById, getArticleArchives, getArchives} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
+const {getResponseObj} = require('../common/js/utils');
 const md = require('markdown-it')(
 {html: true,
   linkify: true,
 	typographer: true}
 );
+function _getBase() {
+  return {
+    success: JSON.parse(JSON.stringify(baseSuccess)),
+    fail:JSON.parse(JSON.stringify(baseFail)),
+    unknown: JSON.parse(JSON.stringify(baseUnknown))
+  }
+}
 module.exports = {
-  addArticle: async (ctx, next) => {
+  addArticle: async ctx => {
+   const {success, fail, unknown} = getResponseObj();
    let {title, category, tags, time, content} = ctx.request.body;
     // 判断是否是管理员账号
     if(!title) {
@@ -35,7 +44,8 @@ module.exports = {
     ctx.body = success;
   },
 
-  getAllArticles: async (ctx, next) => {
+  getAllArticles: async ctx => {
+    const {success, fail, unknown} = getResponseObj();
 	  let {countsPerPage = 5, currentPage = 1 } = ctx.request.body;
     let ids = await getArticeSum();
     let counts = ids.length;
@@ -48,7 +58,8 @@ module.exports = {
     ctx.body = successObj;
   },
 
-  getArticleDetail: async (ctx, next) => {
+  getArticleDetail: async ctx => {
+    const {success, fail, unknown} = getResponseObj();
     console.log('===================>')
     let { id } = ctx.request.body;
     fail.msg = '文章不存在';
@@ -66,6 +77,7 @@ module.exports = {
   },
 
   getCategories: async ctx => {
+    const {success, fail, unknown} = getResponseObj();
     let results = await getArticleArchives();
     if(results.erroMsg) {
       unknown.msg = results.erroMsg;
@@ -82,6 +94,7 @@ module.exports = {
   },
 
   getArticlesArchvies: async ctx => {
+    const {success, fail, unknown} = getResponseObj();
     let results = await getArchives();
     if(results.erroMsg) {
       return ctx.body = unknown;
