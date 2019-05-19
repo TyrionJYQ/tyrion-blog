@@ -59,7 +59,7 @@ class NormalLoginForm extends Component {
               valuePropName: "checked",
               initialValue: true
             })(<Checkbox>保持登录</Checkbox>)}
-            <a className="login-form-forgot" href="">
+            <a className="login-form-forgot" href='javascript:void(0)'>
               忘记密码
             </a>
             <Button
