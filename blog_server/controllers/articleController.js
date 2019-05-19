@@ -17,7 +17,7 @@ function _getBase() {
 module.exports = {
   addArticle: async ctx => {
    const {success, fail, unknown} = getResponseObj();
-   let {title, category, tags, time, content} = ctx.request.body;
+   let {title, category, tags, content} = ctx.request.body;
     // 判断是否是管理员账号
     if(!title) {
       fail.msg = '文章标题不能为空'
@@ -31,7 +31,7 @@ module.exports = {
     if(!content) {
       fail.msg += '文章内容不能为空'
     }
-    if(!title || !archive || !tags || !content) {
+    if(!title || !category || !tags || !content) {
       return ctx.body = fail;
     }
     // 插入到数据库
