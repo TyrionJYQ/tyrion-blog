@@ -5,7 +5,7 @@ import { getArticlesArchives } from "@api/article";
 import { getFormatDate } from "@assets/js/utils";
 import "./archive.css";
 
-let countsPerPage = 2,currentPage = 1;  // 分页配置
+let countsPerPage = 10,currentPage = 1;  // 分页配置
 class Archive extends Component {
   constructor() {
     super();

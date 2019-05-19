@@ -32,13 +32,13 @@ class WritePage extends Component {
   addArticle() {
     const content = this.content
     const title = this.title
-    const archive = this.archive
+    const category = this.category
     const tags = this.tags
     const bizData = {
       data: {
         username: 'JYQ',
         title,
-        archive,
+        category,
         tags,
         content
       },
