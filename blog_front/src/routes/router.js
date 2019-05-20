@@ -1,8 +1,9 @@
-import About from '../components/about/about';
-import Home from '../components/home/home';
-import Archive from '../components/archive/archive';
-import WritePage from '../components/writepage/writepage';
-import ArticleDetail from '../components/articleDetail/articleDetail';
+import About from '@components/about/about';
+import Home from '@components/home/home';
+import Archive from '@components/archive/archive';
+import WritePage from '@components/writepage/writepage';
+import ArticleDetail from '@components/articleDetail/articleDetail';
+import Category from '@components/category/category';
 
 export const routes = [
   {
@@ -14,6 +15,11 @@ export const routes = [
     key: '归档',
     path: '/main/archive',
     component: Archive
+  },
+  {
+    key: '分类',
+    path: "/main/category",
+    component: Category
   },
   
   {

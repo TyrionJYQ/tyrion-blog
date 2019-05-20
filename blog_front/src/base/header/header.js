@@ -65,6 +65,9 @@ class MainHeader extends Component {
               <Menu.Item key="2">
                 <Link to="/main/archive">归档</Link>
               </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/main/category">分类</Link>
+              </Menu.Item>
               <Menu.Item key="3">
                 <Link to="/main/about">关于</Link>
               </Menu.Item>
