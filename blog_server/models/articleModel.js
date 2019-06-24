@@ -4,7 +4,8 @@ const {
   getCurrentPageArticlsSqlStatement, 
   getArticleDetailById,
   getArticleArchivesSqlStatement,
-  getArchivesSqlStatement } = require('../sql/articleSql');
+  getArchivesSqlStatement,
+  getArticlesByCategorySqlStatement } = require('../sql/articleSql');
 const articleDB = require('../db');
 module.exports = {
   addArtcile: artice => articleDB.w(addArticleSqlStatement, artice),
@@ -15,5 +16,6 @@ module.exports = {
   },
   getArticleById: id => articleDB.r(getArticleDetailById, [id]),
   getArticleArchives: () => articleDB.r(getArticleArchivesSqlStatement, []),
-  getArchives: () =>  articleDB.r(getArchivesSqlStatement, [])
+  getArchives: () =>  articleDB.r(getArchivesSqlStatement, []),
+  getArticlesByCategory: category => articleDB.r(getArticlesByCategorySqlStatement, [category]),
 }

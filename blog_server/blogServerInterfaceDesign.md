@@ -1,4 +1,4 @@
-# **Interface Design**
+# **	Interface Design**
 
 ### 共通
 
@@ -288,6 +288,42 @@
 从文章表中获取所有文章articles = [...,{id, time, title},...]
 
 前台假分页处理
+
+
+
+
+
+### 根据文章category获取
+
+
+
+##### 请求路径 `tyrionblog/articles`/categories/category
+
+##### 请求方法: post
+
+##### 请求参数
+
+| 请求参数 | 数据类型 | 必填 | 描述         |
+| -------- | -------- | ---- | ------------ |
+| category | string   | 是   | 文章所属分类 |
+
+##### 响应参数
+
+| 响应参数 | 数据类型 | 必填 | 描述     |
+| -------- | -------- | ---- | -------- |
+| code     | string   | 是   | 响应编码 |
+| msg      | string   | 是   | 响应信息 |
+| articles | array    | 是   | 所有归档 |
+
+##### 业务说明
+
+- 从数据库文章表中获取所有category,过滤相同category并返回，如果为空，则返回数组。
+
+- 暂不做分页处理，直接返回所有文章
+
+- articles: {id,  tags, title, category, time, content}
+
+  
 
 
 

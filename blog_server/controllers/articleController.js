@@ -1,5 +1,5 @@
 // const  {baseSuccess, baseFail, baseUnknown} = require('./apiConfig');
-const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById, getArticleArchives, getArchives} = require('../models/articleModel');
+const { addArtcile, getArticeSum, getCurrentPageArticles, getArticleById, getArticleArchives, getArchives, getArticlesByCategory} = require('../models/articleModel');
 const { getRandom } = require('../common/js/utils');
 const {getResponseObj} = require('../common/js/utils');
 const md = require('markdown-it')(
@@ -100,6 +100,24 @@ module.exports = {
       return ctx.body = unknown;
     }
     success.archives = results;
+    ctx.body = success;
+  },
+
+  getArticlesByCategory: async ctx => {
+    const {success, fail, unknown} = getResponseObj();
+    let {category} = ctx.request.body;
+    if(!category) {
+      fail.msg = '分类不能为空';
+      return ctx.body = fail;
+    }
+    let results = await getArticlesByCategory(category);
+    if(results.erroMsg) {
+      unknown.msg = results.erroMsg;
+      return ctx.body = unknown;
+    }
+    results.forEach(article => article.content = md.render(article.content));
+    success.msg = '获取文章成功!';
+    success.articles = results;
     ctx.body = success;
   }
 }
