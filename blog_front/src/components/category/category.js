@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {getCategories} from "@api/article"
+import { Link, withRouter } from "react-router-dom";
+import {getCategories} from "@api/article";
 export default class Category extends Component {
     constructor() {
         super();
@@ -23,7 +24,11 @@ export default class Category extends Component {
        
         return (
             <ul>
-                {this.state.categories.map(category => <li key={category}>{category}</li>)}
+                {this.state.categories.map(category => 
+                    <Link>
+                        <li key={category} onClick={() => alert(1)}>{category}</li>
+                    </Link>
+                    )}
             </ul>
         )
         
