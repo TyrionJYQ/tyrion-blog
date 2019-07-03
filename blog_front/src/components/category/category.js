@@ -25,8 +25,8 @@ export default class Category extends Component {
         return (
             <ul>
                 {this.state.categories.map(category => 
-                    <Link>
-                        <li key={category} onClick={() => alert(1)}>{category}</li>
+                    <Link to={`/main/category/${category}`} key={category}>
+                        <li key={category}  >{category}</li>
                     </Link>
                     )}
             </ul>

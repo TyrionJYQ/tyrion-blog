@@ -1,36 +1,45 @@
 import Http from "@assets/js/http";
-import {articleModule} from '@config/requestUrlConfig';
+import { articleModule } from "@config/requestUrlConfig";
 
-const {getArticlesUrl, getArticleDetailUrl,getArticlesArchivesUrl, getCategoriesUrl} = articleModule;
-
+const {
+  getArticlesUrl,
+  getArticleDetailUrl,
+  getArticlesArchivesUrl,
+  getCategoriesUrl,
+  getArticlesByCategoryUrl
+} = articleModule;
 
 const getArticles = paginationConfig => {
-    const {countsPerPage, currentPage} = paginationConfig;
-    const bizData = {
-      url: getArticlesUrl,
-      data: {
-        countsPerPage,
-        currentPage
-      }
-    };
-    return Http.post(bizData);
-}
+  const { countsPerPage, currentPage } = paginationConfig;
+  const bizData = {
+    url: getArticlesUrl,
+    data: {
+      countsPerPage,
+      currentPage
+    }
+  };
+  return Http.post(bizData);
+};
+const getArticlesByDetail = category => {
+  const bizData = {
+    url: getArticlesByCategoryUrl,
+    data:{
+      category
+    }
+  }
+  return Http.post(bizData)
+};
 
 const getArticleDetail = id => {
   const bizData = {
     url: getArticleDetailUrl,
-    data: {id}
-  }
+    data: { id }
+  };
   return Http.post(bizData);
-}
+};
 
-const getArticlesArchives = () => Http.get({url: getArticlesArchivesUrl})
+const getArticlesArchives = () => Http.get({ url: getArticlesArchivesUrl });
 
-const getCategories = () => Http.get({url: getCategoriesUrl})
+const getCategories = () => Http.get({ url: getCategoriesUrl });
 
-export {
-    getArticles,
-    getArticleDetail,
-    getArticlesArchives,
-    getCategories
-}
+export { getArticles, getArticleDetail, getArticlesArchives, getCategories, getArticlesByDetail };

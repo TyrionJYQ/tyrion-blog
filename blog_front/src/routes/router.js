@@ -4,6 +4,7 @@ import Archive from '@components/archive/archive';
 import WritePage from '@components/writepage/writepage';
 import ArticleDetail from '@components/articleDetail/articleDetail';
 import Category from '@components/category/category';
+import CategoryArticles from '@components/categoryArticles/categoryArticles';
 
 export const routes = [
   {
@@ -36,6 +37,11 @@ export const routes = [
     key: '文章详情',
     path: "/main/article/:id",
     component: ArticleDetail
+  },
+  {
+    key: '分类文章',
+    path: "/main/category/:id",
+    component: CategoryArticles
   }
 ];
 

@@ -14,7 +14,8 @@ const articleModule = {
     getArticleDetailUrl: `${articleUrlBase}/articleDetail`,
     getArticlesCategoriesUrl: `${articleUrlBase}/categories`,
     getArticlesArchivesUrl: `${articleUrlBase}/archives`,
-    getCategoriesUrl: `${articleUrlBase}/categories`
+    getCategoriesUrl: `${articleUrlBase}/categories`,
+    getArticlesByCategoryUrl: `${articleUrlBase}/categories/category`
 }
 export  {
   userModule,
