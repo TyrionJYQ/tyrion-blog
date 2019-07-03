@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Pagination, Spin, Icon } from "antd";
+import { Pagination } from "antd";
 import ArticleList from "@components/articleList/articleList";
 import { paginationConfig } from "@config/pageConfig";
 import { getArticles as _getArticles } from "@api/article";
