@@ -18,7 +18,7 @@ const doRegister = userInfo => {
   };
   return Http.post(bizData);
 };
-
+// test
 const doLogout = () => {
   let bizData = {
     url: logoutUrl
