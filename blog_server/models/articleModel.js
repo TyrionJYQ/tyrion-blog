@@ -18,4 +18,11 @@ module.exports = {
   getArticleArchives: () => articleDB.r(getArticleArchivesSqlStatement, []),
   getArchives: () =>  articleDB.r(getArchivesSqlStatement, []),
   getArticlesByCategory: category => articleDB.r(getArticlesByCategorySqlStatement, [category]),
+  getArticlesCountByCategory: categoryies => {
+    let promises = [];
+    categoryies.forEach(category => {
+      promises.push(articleDB.r('SELECT ID FROM BLOG_ARTICLES  WHERE CATEGORY = ?', [category]))
+    })
+    return Promise.all(promises);
+  }
 }
