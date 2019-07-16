@@ -3,6 +3,7 @@ const app = new Koa();
 const { port, sessionConfig, sessionKey, routeList } = require("./config");
 const userRouter = require("./routers/userRouter");
 const articleRouter = require('./routers/articleRouter');
+const commentRouter = require('./routers/commentRouter');
 const checkUsername = require('./middlewares/checkUsername');
 const checkLogin = require('./middlewares/checkLogin')
 
@@ -53,6 +54,8 @@ app.use(checkLogin(routeList));
 // 路由
 app.use(userRouter.routes());
 app.use(articleRouter.routes());
+app.use(commentRouter.routes());
+
 
 // 原本配置了/a 的get请求方式,但你用了post请求方式, 返回404,
 // 以下配置可以返回405  方法不匹配
