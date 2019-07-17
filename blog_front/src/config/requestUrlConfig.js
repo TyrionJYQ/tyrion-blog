@@ -17,7 +17,11 @@ const articleModule = {
     getCategoriesUrl: `${articleUrlBase}/categories`,
     getArticlesByCategoryUrl: `${articleUrlBase}/categories/category`
 }
+const commentModule = {
+  getCommentsUrl: '/tyrionblog/comment/id'
+}
 export  {
   userModule,
-  articleModule
+  articleModule,
+  commentModule
 };
