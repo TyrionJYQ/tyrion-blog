@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { getArticleDetail } from "@api/article";
 import { getCommentsById } from "@api/comment";
+import Comments from '@components/comment/comment';
+import { Comment, Avatar, Form, Button, List, Input } from 'antd';
 class ArticleDetail extends Component {
   constructor() {
     super();
@@ -11,24 +13,27 @@ class ArticleDetail extends Component {
   }
   componentDidMount() {
     console.log(this.props);
-    let _this =this;
+    let _this = this;
     const {id} = this.props.match.params;
     getArticleDetail(id).then(data => {
       (data.code === '001') && _this.setState({content: data.articleDetail.content});
     }, err => console.log(err));
-    getCommentsById('7341633937').then(data => {
+    getCommentsById(id).then(data => {
       if(data.code !== '001') return;
-      this.setState({
+      _this.setState({
         comments:data.comments
       })
     })
   }
   render() {
-    const { content } = this.state;
+    const { content, comments} = this.state;
+    let comment = comments.length > 0 ? <Comments comments = {comments}></Comments> : '暂无评论'
     return (
       <div>
         <div dangerouslySetInnerHTML={{ __html: content }} />
-        <div>评论模块</div>
+        <div>
+          {comment}
+        </div>
       </div>
     )
   }
