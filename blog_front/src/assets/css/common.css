@@ -16,3 +16,15 @@
 .mt40 {
   margin-top: 40px;
 }
+.color-red {
+  color: #FF0000;
+}
+.color-green {
+  color: #008000;
+}
+.color-black {
+  color: '#000000'
+}
+.font-bold {
+  font-weight: bold;
+}

@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Button, Icon, Divider, Tag } from "antd";
+import { Icon, Divider, Tag } from "antd";
 import { getFormatDate } from "@assets/js/utils";
 import { articleConfig } from "@config/pageConfig";
+import MyButton from '@base/blog-button/blog-button'
 import "./articleShortcut.css";
 
 const { articleArchiveTagColor } = articleConfig;
 class ArticleShortCut extends Component {
+  constructor() {
+    super()
+    this.buttonInfo = 
+      {text: '阅读更多', iconType: 'double-right'}
+    
+  }
   render() {
     let { content, title, time, id, category } = this.props.article;
     time = getFormatDate({ date: time, pattern: "yyyy-MM-dd" });
@@ -31,9 +38,7 @@ class ArticleShortCut extends Component {
         </div>
         <div className="text-center mb60 mt40">
           <Link to={`/main/article/${id}`}>
-            <Button className="hover-btn">
-              Read More <Icon type="double-right" />
-            </Button>
+            <MyButton buttonInfo = {this.buttonInfo}></MyButton>
           </Link>
         </div>
         <Divider
