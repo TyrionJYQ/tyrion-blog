@@ -8,13 +8,14 @@ export default class Comments extends Component {
     constructor() {
         super();
         this.state = {
+            
             data: [],
             color: 'rgb(253, 227, 207)',
             isShowMoreComments: false,
             buttonInfo: {
                 text: '更多评论',
                 iconType: 'down'
-                // text: this.state.isShowMoreComments ? '更多评论' : '收起评论'
+                
             }
         }
 

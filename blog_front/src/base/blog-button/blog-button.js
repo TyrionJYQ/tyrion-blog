@@ -10,7 +10,7 @@ export default class MyButton extends Component {
     render() {
         const {text, iconType} = this.props.buttonInfo;
         return (
-            <div id="my-button">
+            <div>
                 <Button id="blog-btn" onClick={() => this.props.click && this.props.click()}>
                   {text}  {<Icon type={iconType} />}
                 </Button>
