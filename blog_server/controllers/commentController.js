@@ -1,5 +1,5 @@
 
-const { getComments } = require('../models/commentModel');
+const { getComments, addComment } = require('../models/commentModel');
 const { getRandom } = require('../common/js/utils');
 const { getResponseObj } = require('../common/js/utils');
 
@@ -20,5 +20,18 @@ module.exports = {
       fail.msg = e;
       ctx.body = fail;
     }
+  },
+  addArticeComment: async ctx => {
+    console.log('进来了')
+    let { success, fail, unknown } = getResponseObj();
+    let {id, toUserName = null, fromUserName, content, time} = ctx.request.body
+    console.log(id, toUserName = null, fromUserName, content, time);
+    let result  = await(addComment({id, toUserName, fromUserName, content, time}));
+    console.log(result);
+     if (result.code !== 'OK') {
+      return ctx.body = unknown;
+    }
+    success.msg = '新增评论成功';
+    ctx.body = success;
   }
 }

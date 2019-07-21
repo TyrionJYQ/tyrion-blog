@@ -3,6 +3,7 @@ import { Comment, Tooltip, List, Avatar, Badge, Button, } from 'antd';
 import moment from 'moment';
 import { CHINESE } from '@config/moment';
 import MyButton from '@base/blog-button/blog-button';
+import {addNewComment} from '@api/comment'
 moment.locale('zh-cn', CHINESE)
 export default class Comments extends Component {
     constructor() {
@@ -21,6 +22,11 @@ export default class Comments extends Component {
 
     }
 
+    addComment() {
+        addNewComment().then(data => {
+            console.log(data)
+        })
+    }
     componentDidMount() {
         this._getListData();
     }
@@ -70,6 +76,8 @@ export default class Comments extends Component {
         this.setState({ data });
     }
 
+   
+
     render() {
         const { buttonInfo } = this.state
 
@@ -87,6 +95,7 @@ export default class Comments extends Component {
             </div>
         ) : null
         return (
+            <div>
             <List
                 className="comment-list"
                 style={{ 'backgroundColor': '#f5f5f5', 'padding': '10px', 'borderRadius': '8px' }}
@@ -106,6 +115,8 @@ export default class Comments extends Component {
                     </li>
                 )}
             />
+            <span onClick={() => this.addComment()}>新增评论</span>
+            </div>
         )
     }
 }

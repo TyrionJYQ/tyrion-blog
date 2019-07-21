@@ -353,5 +353,36 @@
 
   ​
 
+  ​
 
+
+### 新增文章评论
+
+
+
+##### 请求路径 `tyrionblog/comment`/newComment
+
+##### 请求方法: post
+
+##### 请求参数
+
+| 请求参数         | 数据类型   | 必填   | 描述                            |
+| ------------ | ------ | ---- | ----------------------------- |
+| id           | string | 是    | 文章id                          |
+| toUserName   | string | 否    | 被评论人用户名                       |
+| fromUserName | string | 是    | 评论人用户名                        |
+| content      | string | 是    | 评论内容                          |
+| time         | number | 是    | 评论时间                          |
+| contentId    | 评论id   | 是    | 评论id: 文章id + 评论人 + Date.now() |
+
+##### 响应参数
+
+| 响应参数 | 数据类型   | 必填   | 描述   |
+| ---- | ------ | ---- | ---- |
+| code | string | 是    | 响应编码 |
+| msg  | string | 是    | 响应信息 |
+
+##### 业务说明
+
+文章新增评论
 
