@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Icon } from "antd";
-import "./blog-button.css";
+
 
 export default class MyButton extends Component {
     constructor() {
@@ -10,8 +10,8 @@ export default class MyButton extends Component {
     render() {
         const {text, iconType} = this.props.buttonInfo;
         return (
-            <div>
-                <Button id="blog-btn" onClick={() => this.props.click && this.props.click()}>
+            <div id="blog-btn">
+                <Button onClick={() => this.props.click && this.props.click()}>
                   {text}  {<Icon type={iconType} />}
                 </Button>
             </div>

@@ -1,0 +1,17 @@
+/****************************************antd默认样式修改*********************************************/
+
+/*******component blog-button style start*******/
+#blog-btn .ant-btn:not([disabled]) {
+  color:#000;
+  border-color: #000;
+}
+
+#blog-btn .ant-btn:not([disabled]):hover {
+    color: #fff;
+}
+
+#blog-btn .ant-btn:hover {
+    background: #000;
+    
+}
+/*******component blog-button style start*******/
