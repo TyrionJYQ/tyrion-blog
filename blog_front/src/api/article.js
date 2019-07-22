@@ -23,7 +23,7 @@ const getArticles = paginationConfig => {
 const getArticlesByDetail = category => {
   const bizData = {
     url: getArticlesByCategoryUrl,
-    data:{
+    data: {
       category
     }
   }
@@ -35,7 +35,13 @@ const getArticleDetail = id => {
     url: getArticleDetailUrl,
     data: { id }
   };
-  return Http.post(bizData);
+  return new Promise((resolve, reject) => {
+    Http.post(bizData).then(data => {
+      if (data.code === '001') return resolve(data.articleDetail);
+      reject({ msg: '获取文章详情失败' });
+
+    })
+  })
 };
 
 const getArticlesArchives = () => Http.get({ url: getArticlesArchivesUrl });

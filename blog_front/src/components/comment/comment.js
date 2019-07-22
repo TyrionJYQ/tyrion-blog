@@ -3,30 +3,25 @@ import { Comment, Tooltip, List, Avatar, Badge, Button, } from 'antd';
 import moment from 'moment';
 import { CHINESE } from '@config/moment';
 import MyButton from '@base/blog-button/blog-button';
-import {addNewComment} from '@api/comment'
+
 moment.locale('zh-cn', CHINESE)
 export default class Comments extends Component {
     constructor() {
         super();
         this.state = {
-            
             data: [],
             color: 'rgb(253, 227, 207)',
             isShowMoreComments: false,
             buttonInfo: {
                 text: '更多评论',
                 iconType: 'down'
-                
+
             }
+
         }
 
     }
 
-    addComment() {
-        addNewComment().then(data => {
-            console.log(data)
-        })
-    }
     componentDidMount() {
         this._getListData();
     }
@@ -39,15 +34,13 @@ export default class Comments extends Component {
         !this.state.isShowMoreComments && this.setState({
             buttonInfo: { text: '更多评论', iconType: 'down' }
         });
-
-
         this._getListData();
 
     }
 
     _getListData() {
-
         let comments = !this.state.isShowMoreComments ? this.props.comments.concat().splice(0, 1) : this.props.comments.concat();
+        console.log('comments=======>', comments);
         const data = comments.map(comment => {
             let author = comment.toUserName ? (<span title={`${comment.fromUserName}回复${comment.toUserName}`} >
                 <span className="color-black font-bold">{comment.fromUserName}</span> 回复 <span className="color-black font-bold">{comment.toUserName}</span></span>) : <span className="color-black font-bold">{comment.fromUserName}</span>
@@ -76,9 +69,10 @@ export default class Comments extends Component {
         this.setState({ data });
     }
 
-   
+
 
     render() {
+
         const { buttonInfo } = this.state
 
         const loadMore = this.props.comments.length > 3 ? (
@@ -96,26 +90,25 @@ export default class Comments extends Component {
         ) : null
         return (
             <div>
-            <List
-                className="comment-list"
-                style={{ 'backgroundColor': '#f5f5f5', 'padding': '10px', 'borderRadius': '8px' }}
-                header={<div><Badge count={this.props.comments.length} style={{ backgroundColor: '#52c41a' }} title={'文章评论数'} /><span style={{ 'margin': '0 0 0 12px' }}>文章评论</span></div>}
-                itemLayout="horizontal"
-                dataSource={this.state.data}
-                loadMore={loadMore}
-                renderItem={item => (
-                    <li>
-                        <Comment
-                            actions={item.actions}
-                            author={item.author}
-                            avatar={item.avatar}
-                            content={item.content}
-                            datetime={item.datetime}
-                        />
-                    </li>
-                )}
-            />
-            <span onClick={() => this.addComment()}>新增评论</span>
+                <List
+                    className="comment-list"
+                    style={{ 'backgroundColor': '#f5f5f5', 'padding': '10px', 'borderRadius': '8px' }}
+                    header={<div><Badge count={this.props.comments.length} style={{ backgroundColor: '#52c41a' }} title={'文章评论数'} /><span style={{ 'margin': '0 0 0 12px' }}>评论</span></div>}
+                    itemLayout="horizontal"
+                    dataSource={this.state.data}
+                    loadMore={loadMore}
+                    renderItem={item => (
+                        <li>
+                            <Comment
+                                actions={item.actions}
+                                author={item.author}
+                                avatar={item.avatar}
+                                content={item.content}
+                                datetime={item.datetime}
+                            />
+                        </li>
+                    )}
+                />
             </div>
         )
     }

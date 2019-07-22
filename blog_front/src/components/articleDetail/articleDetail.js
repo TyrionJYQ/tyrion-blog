@@ -2,38 +2,72 @@ import React, { Component } from "react";
 import { getArticleDetail } from "@api/article";
 import { getCommentsById } from "@api/comment";
 import Comments from '@components/comment/comment';
-import { Comment, Avatar, Form, Button, List, Input } from 'antd';
+import AddComment from '@components/addComment/addComment'
+import { Comment, Avatar, Form, Button, List, Input, message, Spin } from 'antd';
 class ArticleDetail extends Component {
   constructor() {
     super();
     this.state = {
-      content: "",
-      comments: []
+      articleDetail: {},
+      comments: [],
+      loading: true,
+      isShowComment: false,
+      isShowAddComment: false,
+      childComment: {}
     };
+
   }
-  componentDidMount() {
-    console.log(this.props);
-    let _this = this;
-    const {id} = this.props.match.params;
-    getArticleDetail(id).then(data => {
-      (data.code === '001') && _this.setState({content: data.articleDetail.content});
-    }, err => console.log(err));
-    getCommentsById(id).then(data => {
-      if(data.code !== '001') return;
-      _this.setState({
-        comments:data.comments
-      })
+
+  toggleShowAddComment() {
+    debugger;
+    let isShowAddComment = !this.state.isShowAddComment;
+    this.setState({
+      isShowAddComment
     })
   }
+
+  success(newComment) {
+    this.state.comments.unshift(newComment);
+    this.setState({
+      isShowAddComment: false,
+      comments: this.state.comments,
+      isShowComment: false
+    })
+    this.setState({ isShowComment: true })
+  }
+
+
+  componentDidMount() {
+
+    let _this = this;
+    const { id } = this.props.match.params;
+    Promise.all([getArticleDetail(id), getCommentsById(id)]).then(data => {
+      message.success('Loading finished', 2.5);
+      _this.setState({
+        loading: false,
+        comments: data[1],
+        articleDetail: data[0],
+        isShowComment: true
+      })
+
+    }, err => {
+      message.error('出错了，程序员正在坐火箭赶来');
+    });
+  }
   render() {
-    const { content, comments} = this.state;
-    let comment = comments.length > 0 ? <Comments comments = {comments}></Comments> : '暂无评论'
+    debugger
+    const { comments, articleDetail } = this.state;
     return (
       <div>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} />
+
         <div>
-          {comment}
+          {this.state.isShowComment ? (<Comments comments={comments} />) : ''}
         </div>
+        {this.state.isShowAddComment && (<AddComment id={this.state.articleDetail.id} success={this.success.bind(this)}></AddComment>)}
+
+        {localStorage.getItem('tyrionblogUser') ? (<span onClick={() => this.toggleShowAddComment()}>发表评论</span>) : (<span></span>)}
+        <Spin spinning={this.state.loading} />
       </div>
     )
   }

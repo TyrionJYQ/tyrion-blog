@@ -13,19 +13,25 @@ const getCommentsById = id => {
       id
     }
   };
-  return Http.post(bizData);
+  return new Promise((resolve, reject) => {
+    Http.post(bizData).then(data => {
+      if (data.code === '001') return resolve(data.comments);
+      reject('文章评论详情失败');
+    })
+  })
 };
 
-const addNewComment = () => {
+const addNewComment = commentInfo => {
+  let { id, toUserName, fromUserName, content, time, commentId } = commentInfo;
   const bizData = {
     url: addCommentUrl,
     data: {
-      id: '7341633937',
-      toUserName: 'JYQ1',
-      fromUserName: 'JYQ11',
-      content: '一个能打的都没有',
-      time: '1563712891241',
-      Content_Id: '7'
+      id,
+      toUserName,
+      fromUserName,
+      content,
+      time,
+      commentId: `${id}${fromUserName}${Date.now()}`
     }
 
   }
