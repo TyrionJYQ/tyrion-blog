@@ -31,7 +31,7 @@ export default class AddComment extends Component {
         let _this = this;
         let commentInfo = {
             id: this.props.id,
-            toUserName: this.props.userName,
+            toUserName: this.props.toUserName,
             fromUserName: localStorage.getItem('tyrionblogUser'),
             content: this.state.value,
             time: Date.now(),
@@ -40,7 +40,8 @@ export default class AddComment extends Component {
         addNewComment(commentInfo).then(data => {
             if (data.code === '001') {
                 _this.setState({
-                    submitting: false
+                    submitting: false,
+                    value: ''
                 })
 
                 _this.props.success(commentInfo);

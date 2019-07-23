@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Comment, Tooltip, List, Avatar, Badge, Button, } from 'antd';
+import { Comment, Tooltip, List, Avatar, Badge, Button, Popover } from 'antd';
 import moment from 'moment';
 import { CHINESE } from '@config/moment';
 import MyButton from '@base/blog-button/blog-button';
+import AddComment from '@components/addComment/addComment'
+// 点击回复文本，计算元素位置， 添加ping
 
 moment.locale('zh-cn', CHINESE)
 export default class Comments extends Component {
@@ -18,13 +20,16 @@ export default class Comments extends Component {
 
             }
 
+
         }
 
     }
 
     componentDidMount() {
         this._getListData();
+        this.props.onRef(this);
     }
+
 
     toggleShowMore() {
         this.state.isShowMoreComments = !this.state.isShowMoreComments
@@ -39,14 +44,15 @@ export default class Comments extends Component {
     }
 
     _getListData() {
-        let comments = !this.state.isShowMoreComments ? this.props.comments.concat().splice(0, 1) : this.props.comments.concat();
-        console.log('comments=======>', comments);
+        let comments = !this.state.isShowMoreComments ? this.props.comments.concat().splice(0, 1) : this.props.comments.concat(),
+            {handlderClick,id,success} = this.props;
+
         const data = comments.map(comment => {
             let author = comment.toUserName ? (<span title={`${comment.fromUserName}回复${comment.toUserName}`} >
-                <span className="color-black font-bold">{comment.fromUserName}</span> 回复 <span className="color-black font-bold">{comment.toUserName}</span></span>) : <span className="color-black font-bold">{comment.fromUserName}</span>
+                <span className="color-black font-bold" >{comment.fromUserName}</span> 回复 <span className="color-black font-bold">{comment.toUserName}</span></span>) : <span className="color-black font-bold">{comment.fromUserName}</span>
             return (
                 {
-                    actions: [<span>Reply to</span>],
+                    actions: [<Popover content={<AddComment toUserName = {comment.fromUserName} id={id} success={success}/>} trigger="click" placement="topLeft"><span>回复</span></Popover >],
                     author,
                     avatar: <Avatar style={{ backgroundColor: this.state.color, verticalAlign: 'middle', color: 'rgb(245, 106, 0)' }} size="small">
                         {comment.fromUserName}
