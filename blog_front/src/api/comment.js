@@ -22,7 +22,7 @@ const getCommentsById = id => {
 };
 
 const addNewComment = commentInfo => {
-  let { id, toUserName, fromUserName, content, time, commentId } = commentInfo;
+  let { id, toUserName, fromUserName, content, time } = commentInfo;
   const bizData = {
     url: addCommentUrl,
     data: {

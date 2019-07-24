@@ -25,7 +25,7 @@ module.exports = {
     console.log('进来了')
     let { success, fail, unknown } = getResponseObj();
     let {id, toUserName = null, fromUserName, content, time,commentId} = ctx.request.body
-    console.log(id, toUserName = null, fromUserName, content, time, commentId);
+    // console.log(id, toUserName = null, fromUserName, content, time, commentId);
     let result  = await(addComment({id, toUserName, fromUserName, content, time, commentId}));
     console.log(result);
      if (result.code !== 'OK') {

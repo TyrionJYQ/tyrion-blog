@@ -19,7 +19,7 @@ export default class AddComment extends Component {
   }
 
   onSubmit() {
-    if (!this.state.value) {
+    if (!this.state.value.trim()) {
       return;
     }
 
@@ -48,7 +48,7 @@ export default class AddComment extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{ 'marginTop': 15 }}>
         <Form.Item>
           <TextArea rows={4}
             onChange={e => this.handleChange(e)}

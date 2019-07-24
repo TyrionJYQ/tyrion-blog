@@ -3,7 +3,7 @@ import { getArticleDetail } from "@api/article";
 import { getCommentsById } from "@api/comment";
 import Comments from '@components/comment/comment';
 import AddComment from '@components/addComment/addComment'
-import { message, Spin } from 'antd';
+import { message, Spin, Button } from 'antd';
 class ArticleDetail extends Component {
   constructor() {
     super();
@@ -38,6 +38,7 @@ class ArticleDetail extends Component {
 
 
   componentDidMount() {
+    console.log(this);
     let _this = this;
     const { id } = this.props.match.params;
     Promise.all([getArticleDetail(id), getCommentsById(id)]).then(data => {
@@ -53,17 +54,32 @@ class ArticleDetail extends Component {
     });
   }
   render() {
-    const { comments, articleDetail } = this.state;
-    return (
+    const { comments, articleDetail, isShowAddComment } = this.state;
+    const ISLOGIN = localStorage.getItem('tyrionblogUser');
+    const button = ISLOGIN ?
+      <Button type="primary" onClick={() => this.toggleShowAddComment()}>回复</Button> :
+      <Button type="primary" onClick={() => this.props.history.push('/login')}>登录后评论</Button>;
+    return (  
       <div>
         {/* 评论列表组件 */}
         <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} /><div>
-          {this.state.isShowComment ? (<Comments comments={comments} onRef={this.onRef.bind(this)} id={this.state.articleDetail.id} success={this.success.bind(this)} />) : ''}
+          {this.state.isShowComment ?
+            <Comments comments={comments}
+              onRef={this.onRef.bind(this)}
+              id={this.state.articleDetail.id}
+              success={this.success.bind(this)} /> :
+            <span>加载中...</span>}
         </div>
         {/* 新增评论组件 */}
-        {this.state.isShowAddComment && (<div style={this.state.styleObj}><AddComment id={this.state.articleDetail.id} success={this.success.bind(this)} toUserName={this.toUserName} /></div>)}
-
-        {localStorage.getItem('tyrionblogUser') ? (<span onClick={() => this.toggleShowAddComment()}>发表评论</span>) : (<span></span>)}
+        {isShowAddComment &&
+          <div style={this.state.styleObj}>
+            <AddComment id={this.state.articleDetail.id}
+              success={this.success.bind(this)}
+              toUserName={this.toUserName} />
+          </div>
+        }
+        {/* 操作按钮*/}
+        {button}
         <Spin spinning={this.state.loading} />
       </div>
     )

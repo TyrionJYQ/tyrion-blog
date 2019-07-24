@@ -28,3 +28,12 @@
 .font-bold {
   font-weight: bold;
 }
+
+/* 正三角 */
+.triangle-up {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid red;
+}

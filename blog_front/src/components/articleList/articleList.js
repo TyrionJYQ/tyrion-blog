@@ -3,11 +3,6 @@ import ArticleShortCut from "@base/articleShortcut/articleShortcut";
 import "./articleList.css";
 
 export default class ArticleList extends Component {
-  constructor() {
-    super();
-    
-  }
-
   render() {
     let articles =[];
     this.props.articles.forEach(article => {

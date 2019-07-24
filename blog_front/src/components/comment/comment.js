@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Comment, Tooltip, List, Avatar, Badge,  Popover } from 'antd';
+import { Comment, Tooltip, List, Avatar, Badge, Popover, Icon } from 'antd';
 import moment from 'moment';
 import { CHINESE } from '@config/moment';
 import MyButton from '@base/blog-button/blog-button';
-import AddComment from '@components/addComment/addComment'
+import AddComment from '@components/addComment/addComment';
+import "./comment.css";
 // 点击回复文本，计算元素位置， 添加ping
 
 moment.locale('zh-cn', CHINESE)
@@ -43,7 +44,7 @@ export default class Comments extends Component {
     this._getListData(this.isShowMoreComments, buttonInfo);
   }
   _getListData(isShowMoreComments, buttonInfo) {
-    if (!isShowMoreComments) {
+    if (typeof isShowMoreComments !== 'boolean') {
       isShowMoreComments = this.isShowMoreComments;
       buttonInfo = this.state.buttonInfo;
     }
@@ -60,13 +61,17 @@ export default class Comments extends Component {
             trigger="click"
             placement="topLeft">
             <span onClick={e => this.commentClick(e)}>回复</span>
+
           </Popover >],
           author,
           avatar: <Avatar style={{ backgroundColor: this.state.color, verticalAlign: 'middle', color: 'rgb(245, 106, 0)' }} size="small">
             {comment.fromUserName}
           </Avatar>,
           content: (
-            <p>{comment.content}</p>
+            <div style={{position: 'relative'}}>
+              <span className="triangle-up"></span>
+              <p className="comment-content">{comment.content}</p>
+            </div>
           ),
           datetime: (
             <Tooltip
