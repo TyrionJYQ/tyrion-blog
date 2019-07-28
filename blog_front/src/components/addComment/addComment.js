@@ -11,7 +11,11 @@ export default class AddComment extends Component {
       value: '',
     };
   }
-
+  
+  componentDidMount() {
+    this.props.getAddComponent && this.props.getAddComponent(this);
+  }
+  
   handleChange(e) {
     this.setState({
       value: e.target.value,
@@ -48,7 +52,7 @@ export default class AddComment extends Component {
   }
   render() {
     return (
-      <div style={{ 'marginTop': 15 }}>
+      <div >
         <Form.Item>
           <TextArea rows={4}
             onChange={e => this.handleChange(e)}

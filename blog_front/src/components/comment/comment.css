@@ -2,12 +2,12 @@
     margin-top: 20px;
     padding: 22px;
     border-radius: 3px;
-    color: #0c0b0bf0;
-    background: #1dab362e;
+    color: rgba(0, 0, 0, 0.85);
+    background: rgba(27, 171, 54, 0.18);
 }
 .comment-list .triangle-up {
     position: absolute;
     top: -15px;
     margin-bottom: 15px;
-    border-bottom: 15px solid #1dab362e;
+    border-bottom: 15px solid rgba(27, 171, 54, 0.18);
 }

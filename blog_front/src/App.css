@@ -1,6 +1,9 @@
 @import '~antd/dist/antd.css';
 @import './assets/css/common.css';
 @import './assets/css/my-theme.css';
+html,body {
+  height: 100%;
+}
 
 #root {
    height: 100%;

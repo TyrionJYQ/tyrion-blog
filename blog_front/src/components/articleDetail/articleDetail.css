@@ -1,0 +1,18 @@
+.article-detail {
+    position: fixed;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+.article-detail .sticker{
+    width:100%;
+    min-height:100%;
+}
+.article-detail .sticker-con{
+    padding-bottom:655px;    
+}
+.article-detail .sticker-footer{
+    margin-top:-655px;  
+}
+

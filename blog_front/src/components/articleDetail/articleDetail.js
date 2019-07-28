@@ -4,6 +4,7 @@ import { getCommentsById } from "@api/comment";
 import Comments from '@components/comment/comment';
 import AddComment from '@components/addComment/addComment'
 import { message, Spin, Button } from 'antd';
+import './articleDetail.css'
 class ArticleDetail extends Component {
   constructor() {
     super();
@@ -19,17 +20,14 @@ class ArticleDetail extends Component {
     this.toUserName = null;
   }
 
-  toggleShowAddComment() {
-    this.setState({
-      isShowAddComment: true
-
-    })
-  }
-
   onRef(C) {
     this.childC = C
   }
-
+  // 获取新增评论组件
+  getAddComponent(C) {
+    console.log(C);
+    this.childComonentNamedAddComponent = C
+  }
   success(newComment) {
     this.state.comments.unshift(newComment);
     this.childC._getListData();
@@ -38,7 +36,6 @@ class ArticleDetail extends Component {
 
 
   componentDidMount() {
-    console.log(this);
     let _this = this;
     const { id } = this.props.match.params;
     Promise.all([getArticleDetail(id), getCommentsById(id)]).then(data => {
@@ -57,29 +54,35 @@ class ArticleDetail extends Component {
     const { comments, articleDetail, isShowAddComment } = this.state;
     const ISLOGIN = localStorage.getItem('tyrionblogUser');
     const button = ISLOGIN ?
-      <Button type="primary" onClick={() => this.toggleShowAddComment()}>回复</Button> :
+      <Button type="primary" onClick={() => this.childComonentNamedAddComponent.onSubmit()}>回复</Button> :
       <Button type="primary" onClick={() => this.props.history.push('/login')}>登录后评论</Button>;
-    return (  
-      <div>
+    return (
+      <div className="article-detail">
         {/* 评论列表组件 */}
-        <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} /><div>
-          {this.state.isShowComment ?
-            <Comments comments={comments}
-              onRef={this.onRef.bind(this)}
-              id={this.state.articleDetail.id}
-              success={this.success.bind(this)} /> :
-            <span>加载中...</span>}
+        <div className="sticker">
+          <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} className="sticker-con"/>
         </div>
-        {/* 新增评论组件 */}
-        {isShowAddComment &&
-          <div style={this.state.styleObj}>
+        <div className = 'comment-wrapper sticker-footer'>
+          <div>
+            {this.state.isShowComment ?
+              <Comments comments={comments}
+                onRef={this.onRef.bind(this)}
+                id={this.state.articleDetail.id}
+                success={this.success.bind(this)} /> :
+              <span>加载中...</span>}
+          </div>
+          {/* 新增评论组件 */}
+          <div style={this.state.styleObj} className="comment">
             <AddComment id={this.state.articleDetail.id}
               success={this.success.bind(this)}
-              toUserName={this.toUserName} />
+              toUserName={this.toUserName}
+              getAddComponent={this.getAddComponent.bind(this)} />
           </div>
-        }
-        {/* 操作按钮*/}
-        {button}
+
+          {/* 操作按钮*/}
+          {button}
+        </div>
+
         <Spin spinning={this.state.loading} />
       </div>
     )

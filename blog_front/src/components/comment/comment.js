@@ -89,7 +89,7 @@ export default class Comments extends Component {
   }
   render() {
     const { buttonInfo } = this.state
-    const loadMore = this.props.comments.length > 3 ? (
+    const loadMore = this.props.comments.length > 1 ? (
       <div
         style={{
           textAlign: 'center',
