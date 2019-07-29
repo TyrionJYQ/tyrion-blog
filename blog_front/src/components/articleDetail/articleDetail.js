@@ -25,7 +25,6 @@ class ArticleDetail extends Component {
   }
   // 获取新增评论组件
   getAddComponent(C) {
-    console.log(C);
     this.childComonentNamedAddComponent = C
   }
   success(newComment) {
@@ -34,9 +33,18 @@ class ArticleDetail extends Component {
     this.childC.commentTarget && this.childC.commentTarget.click() && (this.childC.commentTarget = null)
   }
 
+  _getArticleContentMinHeight() {
+    let minHeight = document.body.offsetHeight - 66 -30 - 64
+    this.setState({
+      styleObj: {
+        minHeight
+      }
+    })
+  }
 
   componentDidMount() {
     let _this = this;
+    this._getArticleContentMinHeight();
     const { id } = this.props.match.params;
     Promise.all([getArticleDetail(id), getCommentsById(id)]).then(data => {
       _this.setState({
@@ -59,10 +67,9 @@ class ArticleDetail extends Component {
     return (
       <div className="article-detail">
         {/* 评论列表组件 */}
-        <div className="sticker">
-          <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} className="sticker-con"/>
-        </div>
-        <div className = 'comment-wrapper sticker-footer'>
+
+        <div dangerouslySetInnerHTML={{ __html: articleDetail.content }} style={this.state.styleObj}/>
+        <div className='comment-wrapper'>
           <div>
             {this.state.isShowComment ?
               <Comments comments={comments}
@@ -72,7 +79,7 @@ class ArticleDetail extends Component {
               <span>加载中...</span>}
           </div>
           {/* 新增评论组件 */}
-          <div style={this.state.styleObj} className="comment">
+          <div className="comment">
             <AddComment id={this.state.articleDetail.id}
               success={this.success.bind(this)}
               toUserName={this.toUserName}

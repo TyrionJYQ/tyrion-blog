@@ -36,7 +36,7 @@ class BlogLayout extends Component {
       <Layout className="layout">
         <BackTop />
         <MainHeader history={this.props.history}/>
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: '0 50px', marginTop: 66 }}>
           <div style={{ background: '#fff', padding: 24, minHeight, marginTop: contentMarginTop}}>
             {
               routes.map(({ path, key, component, ...props }) => (

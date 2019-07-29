@@ -46,7 +46,7 @@ class MainHeader extends Component {
       );
     return (
       <Row>
-        <Header style={{ backgroundColor: '#fff' }}>
+        <Header style={{ backgroundColor: '#fff', position: 'fixed', zIndex: 1, width: '100%' }}>
           <Col span={3}>
             <Logo />
           </Col>
