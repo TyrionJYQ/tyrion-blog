@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const Instance = axios.create({
-  baseURL: 'http://localhost:9999'
+  // baseURL: 'http://localhost:9999',
+  baseURL: 'http://localhost:80'  //ngnix反向代理
 })
 let Http = {};
 Http.post = bizData => new Promise((resolve, reject) => {

@@ -12,13 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "captchapng2": "^1.0.3",
-    "koa": "^2.7.0",
+    "koa": "^2.11.0",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
-    "koa-session": "^5.10.1",
+    "koa-session": "^5.13.1",
     "koa-static": "^5.0.0",
     "markdown-it": "^8.4.2",
     "sqlite": "^3.0.3",
-    "sqlite3": "^4.0.9"
+    "sqlite3": "^4.1.1"
   }
 }
